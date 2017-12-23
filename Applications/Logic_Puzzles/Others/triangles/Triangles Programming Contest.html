@@ -1,0 +1,703 @@
+<html><!-- Mirrored from members.aol.com/bitzenbeitz/Contests/Triangles/Description.html --><head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta content="triangles, difference triangles, absolute difference triangles, triangles contest, programming, programming contest, computer programming, computer programming contest, math, mathematics, recreational math, recreational mathematics, recreational programming" name="keywords">
+<title>Triangles Programming Contest</title>
+</head>
+<body link="#0000ff">
+
+<p align="CENTER">
+<font size="5" face="Arial">
+<b>Programming Contest</b><br>Triangles
+</font>
+</p>
+
+<p>
+<font face="Arial">
+<b>
+Introduction
+</b>
+</font>
+</p>
+
+<p><font size="2" face="Arial">Given any sequence of positive integers 
+we can generate a triangular array of numbers by using the given 
+sequence as the triangle’s base and then letting each remaining value in
+ the triangle be the absolute difference of the two values immediately 
+below it.  For example, starting with the sequence (89, 78, 12, 13) we 
+can construct this triangle:</font></p>
+
+<p align="CENTER"><font size="2" face="Arial">
+10<br>
+55 &nbsp; 65<br>
+11 &nbsp; 66 &nbsp; 1<br>
+89 &nbsp; 78 &nbsp; 12 &nbsp; 13
+</font></p>
+
+<p><font size="2" face="Arial">
+We say that a sequence of positive integers is <b>acceptable</b> if no 
+integer appears more than once in the triangle it generates.  The 
+sequence (89, 78, 12, 13), whose triangle is shown above, is acceptable.
+  The sequence (19, 80, 51, 77) is not acceptable because its triangle 
+contains two instances of the integer 29:
+</font></p>
+
+<p align="CENTER"><font size="2" face="Arial">
+29<br>
+32 &nbsp; 3<br>
+61 &nbsp; 29 &nbsp; 26<br>
+19 &nbsp; 80 &nbsp; 51 &nbsp; 77
+</font></p>
+
+<p><font size="2" face="Arial">
+Given an acceptable sequence of positive integers, its <b>span</b> is 
+the difference between the largest and smallest values in the 
+corresponding triangle.  For example, the span of (89, 78, 12, 13) is 
+88.
+</font></p>
+
+<p><font size="2" face="Arial">
+Given two acceptable sequences of the same length, the one with the smaller span is considered <b>better</b>.  For example, (83, 73, 14, 47) is better than (89, 78, 12, 13) because their spans are 73 and 88, respectively.
+</font></p>
+
+
+<p><font face="Arial"><b>
+The Contest
+</b></font></p>
+
+
+
+<p><font size="2" face="Arial">
+The goal is to find acceptable sequences with small spans.
+</font></p>
+<p><font size="2" face="Arial">
+Send me your best (that is, least span) acceptable sequence for each 
+sequence length from 2 to 25.  I’ll calculate a subscore for each 
+sequence (details of the scoring system are <a href="#ScoringDetails">below</a>)
+ and the total of your 24 subscores will be your contest score.  The 
+person with the highest contest score wins the contest.  In case of a 
+tie, I’ll choose a winner at random from among those tied.
+</font></p>
+
+
+<p>
+<b>
+<font face="Arial">
+The Prizes
+</font>
+</b>
+</p>
+
+<p>
+<font size="2" face="Arial">
+First prize is $300.  Second prize is $50.
+</font>
+</p>
+
+<p>
+<b>
+<font face="Arial">
+How to Enter
+</font>
+</b>
+</p>
+
+<p>
+<font size="2" face="Arial">
+Send an email containing your entry to </font><a href="mailto:Bitzenbeitz@aol.com"><font size="2" face="Arial">bitzenbeitz@aol.com</font></a><font size="2" face="Arial">
+ before Noon GMT on October 15, 2002. Put just the word TRIANGLES in the
+ subject line. The body of the email should be formatted as follows.</font></p>
+
+<p><font size="2" face="Arial">
+The first line should contain your sequence of length 2. The second line
+ should contain your sequence of length 3.  And so forth through your 
+sequence of length 25.  Each sequence should be written as a list of 
+comma-delimited integers. After your last sequence leave a blank line. 
+After that blank line provide your name. On the line after your name 
+provide your city (and state or province, if applicable) and country.
+</font></p>
+
+<p><font size="2" face="Arial">
+Do not include any extraneous information before your first sequence.  
+Do not include any extraneous information between your last sequence and
+ your name/location.  Do not include any sequences whose lengths are 
+less than 2 or greater than 25.
+</font></p>
+
+<p><font size="2" face="Arial">
+Do not use any integers greater than 99,999.
+</font></p>
+
+<p><font size="2" face="Arial">
+Your location information (that is, your city and country) will be published on the <a href="http://www.recmath.org/contest/Triangles/InterimStandings.html">Triangles Contest Interim Standings</a> page.  Be certain that you do not include anything (such as your street address) that you do not want made public.
+</font></p>
+
+<p><font size="2" face="Arial">
+Scoring will be done by computer, so be careful in composing your email.
+</font></p>
+
+<p><font size="2" face="Arial">
+You may enter as often as you like, but you are only eligible to win one
+ prize.  If you enter more than once, you should send from the same 
+email address each time.
+</font></p>
+
+<a name="ScoringDetails"></a>
+
+<p>
+<b>
+<font face="Arial">
+The Scoring System
+</font>
+</b>
+</p>
+
+<p>
+<font size="2" face="Arial">
+Each time you submit an entry I will merge it with your prior entries, 
+if any.  The result will be a virtual entry containing your best 
+sequence for each of the 24 sequence lengths. I will give each of these 
+24 sequences a subscore from 0 to 1 and their sum will be your contest 
+score.
+</font>
+</p>
+
+<p>
+<font size="2" face="Arial">
+I score the individual sequences as follows.  If your sequence is the 
+best sequence that was submitted for that length, I give it 1 point; 
+otherwise I give it only a fraction of a point.  The fraction is the 
+smallest submitted span for that length, divided by your span.  For 
+example, suppose your sequence of length 6 has a span of 12 and further 
+suppose that the smallest span that was submitted to the contest (for a 
+sequence of length 6) was 9.  Then your subscore for that sequence is 9 /
+ 12 = 0.75.
+</font>
+</p>
+
+<p>
+<font size="2" face="Arial">
+There’s a more detailed <a href="#ScoringExample">example</a> of the scoring in the FAQ section, below.
+</font>
+</p>
+
+<p>
+<b>
+<font face="Arial">
+Getting Your Questions Answered
+</font>
+</b>
+</p>
+
+<p>
+<font size="2" face="Arial">
+First, check the <a href="#FAQ">FAQ</a> section below.  If you can't find the information you need there, send your question to the <a href="#DiscussionList">discussion list</a>.
+
+If your question is of a personal nature, you can send email directly to <a href="mailto:alzimmerma@aol.com">alzimmerma@aol.com</a>.
+</font>
+</p>
+
+<a name="DiscussionList"></a>
+<p>
+<b>
+<font face="Arial">
+The Discussion List
+</font>
+</b>
+</p>
+
+<p>
+<font size="2" face="Arial">
+If you think you might enter the contest, it is important that you join the contest discussion list by clicking <a href="http://groups.yahoo.com/group/TrianglesProgrammingContest/join">here</a>.
+  The discussion list serves two purposes.  First, it allows people to 
+ask for clarifications to the rules.  Be aware that sometimes these 
+requests result in changes to the rules, and the only place those 
+changes are announced is on the list.  Second, the list allows 
+contestants to interact with each other to discuss programming 
+techniques, results and anything else relevant to the contest.
+</font>
+</p>
+
+<p><b><font face="Arial">Acknowledgment</font></b></p>
+<p><font size="2" face="Arial">A hearty thanks to Jean-Charles Meyrignac for inspiring this contest.</font></p>
+
+
+<p><b><font face="Arial">My Lawyer Would Want Me To Say This
+</font></b></p>
+<p><font size="2" face="Arial">I reserve the right to discontinue the 
+contest at any time.  I reserve the right to disqualify any entry or 
+entrant for any reason that suits me.  I reserve the right to interpret 
+the rules as I see fit.  I reserve the right to change the contest rules
+ in mid-contest.  I reserve the right to have French Fries with my pizza
+ and I don’t care who laughs.  In all matters contest-related, my word 
+is law.</font></p>
+
+
+<a name="FAQ"></a>
+
+<p><b><font face="Arial">Frequently Asked Questions</font></b></p>
+
+
+
+<p><font size="2" face="Arial"><b>Can you give an example of a valid contest entry?</b></font></p>
+
+<p><font size="2" face="Arial">I asked the guy who changes my oil to 
+beta test the contest rules.  Here’s what he emailed me.  I’m not sure 
+if his sequences are any good, but they are all acceptable and he got 
+the syntax correct.</font></p>
+
+<p>
+<font size="0">
+1, 3<br>
+13, 12, 3<br>
+2, 15, 11, 1<br>
+5, 40, 27, 15, 7<br>
+57, 28, 9, 63, 52, 46<br>
+96, 118, 29, 129, 127, 115, 69<br>
+228, 288, 248, 231, 143, 46, 107, 295<br>
+274, 310, 130, 242, 5, 241, 231, 22, 178<br>
+432, 468, 423, 221, 341, 63, 376, 363, 32, 276<br>
+425, 504, 339, 435, 118, 73, 480, 46, 138, 32, 102<br>
+91, 206, 384, 766, 633, 989, 241, 952, 36, 95, 16, 401<br>
+278, 668, 636, 1073, 1339, 338, 1161, 1282, 367, 42, 1276, 560, 970<br>
+203, 1736, 1026, 1455, 1656, 418, 1545, 124, 153, 833, 762, 1530, 957, 1311<br>
+3389, 1086, 2868, 1486, 414, 2692, 180, 570, 3388, 847, 2581, 179, 2215, 1922, 653<br>
+3121, 3294, 1810, 3251, 2996, 2662, 111, 1173, 1447, 1353, 160, 2255, 3018, 2045, 1725, 2707<br>
+1450, 2550, 1638, 2740, 1719, 1127, 4267, 936, 4009, 129, 112, 3430, 4333, 176, 2732, 2416, 1962<br>
+2092, 439, 4958, 6345, 862, 3258, 869, 228, 5794, 2342, 5925, 988, 6716, 5792, 6811, 1538, 4231, 3448<br>
+3539, 1558, 8819, 6845, 8788, 4540, 4618, 7656, 5178, 1846, 6970, 724, 8533, 7539, 3546, 1717, 6585, 2978, 2131<br>
+300, 676, 8752, 1901, 7248, 1238, 9995, 2811, 4027, 4312, 1728, 5940, 8627, 4951, 2153, 323, 8957, 2497, 5858, 2870<br>
+3029, 8394, 4622, 8018, 835, 9219, 9450, 1502, 13086, 10962, 11579, 2925, 1984, 1681, 11140, 12727, 3565, 263, 8743, 3346, 5060<br>
+9451, 11910, 8047, 387, 14356, 13998, 1698, 8084, 13704, 14429, 8843, 
+11645, 9315, 12587, 1343, 15174, 13062, 8652, 10581, 14509, 15183, 5785<br>
+512, 15214, 20606, 2440, 17727, 5975, 14204, 19938, 19642, 17737, 19510,
+ 19174, 3861, 15237, 6754, 14146, 958, 17663, 1899, 5011, 17309, 7253, 
+10307<br>
+6683, 20328, 15340, 21133, 2081, 18398, 7194, 3995, 5905, 21849, 2101, 
+9052, 4721, 11227, 15343, 8524, 5441, 17214, 731, 3400, 17605, 18141, 
+2427, 12671<br>
+3825, 11493, 22750, 12170, 17578, 10782, 1003, 6146, 16297, 20037, 
+24688, 28934, 4847, 11503, 5965, 15014, 23727, 937, 27300, 19702, 21688,
+ 8589, 7260, 18430, 6620<br>
+<br>
+Speedy Goodwrench<br>
+Mechanicsburg, Pennsylvania, USA
+</font></p>
+
+<a name="ScoringExample"></a>
+
+<p><font size="2" face="Arial">
+<b>
+Can you give an example of how the scoring system works?</b></font>
+</p>
+
+<p><font size="2" face="Arial">Suppose that the contest required only 
+sequences of lengths 2 through 4 and that Able, Baker and Charlie 
+submitted the following sequences:</font></p>
+
+<p align="CENTER">
+  <table width="400" cellspacing="1" cellpadding="7" border="">
+    <tbody><tr>
+      <td width="16%">
+        <font size="2" face="Arial">
+          <p>
+            Able
+          </p>
+        </font>
+      </td>
+      <td width="28%">
+        <font size="2" face="Arial">
+          <p align="CENTER">
+            5, 3
+          </p>
+        </font>
+      </td>
+      <td width="28%">
+        <font size="2" face="Arial">
+          <p align="CENTER">
+            11, 14, 5
+          </p>
+        </font>
+      </td>
+      <td width="28%">
+        <font size="2" face="Arial">
+          <p align="CENTER">
+            17, 12, 20, 19
+          </p>
+        </font>
+      </td>
+    </tr>
+    <tr>
+      <td width="16%">
+        <font size="2" face="Arial">
+          <p>
+            Baker
+          </p>
+        </font>
+      </td>
+      <td width="28%">
+        <font size="2" face="Arial">
+          <p align="CENTER">
+            2, 6
+          </p>
+        </font>
+      </td>
+      <td width="28%">
+        <font size="2" face="Arial">
+          <p align="CENTER">
+            13, 17, 6
+          </p>
+        </font>
+      </td>
+      <td width="28%">
+        <font size="2" face="Arial">
+          <p align="CENTER">
+            17, 1, 11, 19
+          </p>
+        </font>
+      </td>
+    </tr>
+    <tr>
+      <td width="16%">
+        <font size="2" face="Arial">
+          <p>
+            Charlie
+          </p>
+        </font>
+      </td>
+      <td width="28%">
+        <font size="2" face="Arial">
+          <p align="CENTER">
+            7, 2
+          </p>
+        </font>
+      </td>
+      <td width="28%">
+        <font size="2" face="Arial">
+          <p align="CENTER">
+            9, 6, 13
+          </p>
+        </font>
+      </td>
+      <td width="28%">
+        <font size="2" face="Arial">
+          <p align="CENTER">
+            15, 13, 16, 4
+          </p>
+        </font>
+      </td>
+    </tr>
+  </tbody></table>
+</p>
+
+<font size="2" face="Arial">
+  <p>
+    The triangles that are generated from these sequences are:
+  </p>
+</font>
+
+<p align="CENTER">
+  <table valign="MIDDLE" width="400" cellspacing="1" cellpadding="7" border="">
+    <tbody><tr>
+      <td width="16%">
+        <font size="2" face="Arial">
+          <p>
+            Able
+          </p>
+        </font>
+      </td>
+      <td width="28%">
+        <font size="2" face="Arial">
+          <p align="CENTER">
+            2<br>
+            5 &nbsp; 3
+          </p>
+        </font>
+      </td>
+      <td width="28%">
+        <font size="2" face="Arial">
+          <p align="CENTER">
+            6<br>
+            3 &nbsp; 9<br>
+            11 &nbsp; 14 &nbsp; 5
+          </p>
+        </font>
+      </td>
+      <td width="28%">
+        <font size="2" face="Arial">
+          <p align="CENTER">
+            4<br>
+            3 &nbsp; 7<br>
+            5 &nbsp; 8 &nbsp; 1<br>
+            17 &nbsp; 12 &nbsp; 20 &nbsp; 19
+          </p>
+        </font>
+      </td>
+    </tr>
+    <tr>
+      <td width="16%">
+        <font size="2" face="Arial">
+          <p>
+            Baker
+          </p>
+        </font>
+      </td>
+      <td width="28%">
+        <font size="2" face="Arial">
+          <p align="CENTER">
+            4<br>
+            2 &nbsp; 6
+          </p>
+        </font>
+      </td>
+      <td width="28%">
+        <font size="2" face="Arial">
+          <p align="CENTER">
+            7<br>
+            4 &nbsp; 11<br>
+            13 &nbsp; 17 &nbsp; 6
+          </p>
+        </font>
+      </td>
+      <td width="28%">
+        <font size="2" face="Arial">
+          <p align="CENTER">
+            4<br>
+            6 &nbsp; 2<br>
+            16 &nbsp; 10 &nbsp; 8<br>
+            17 &nbsp; 1 &nbsp; 11 &nbsp; 19
+          </p>
+        </font>
+      </td>
+    </tr>
+    <tr>
+      <td width="16%">
+        <font size="2" face="Arial">
+          <p>
+            Charlie
+          </p>
+        </font>
+      </td>
+      <td width="28%">
+        <font size="2" face="Arial">
+          <p align="CENTER">
+            5<br>
+            7 &nbsp; 2
+          </p>
+        </font>
+      </td>
+      <td width="28%">
+        <font size="2" face="Arial">
+          <p align="CENTER">
+            4<br>
+            3 &nbsp; 7<br>
+            9 &nbsp; 6 &nbsp; 13
+          </p>
+        </font>
+      </td>
+      <td width="28%">
+        <font size="2" face="Arial">
+          <p align="CENTER">
+            8<br>
+            1 &nbsp; 9<br>
+            2 &nbsp; 3 &nbsp; 12<br>
+            15 &nbsp; 13 &nbsp; 16 &nbsp; 4
+          </p>
+        </font>
+      </td>
+    </tr>
+  </tbody></table>
+</p>
+
+<font size="2" face="Arial">
+  <p>
+    The spans of these sequences are:
+  </p>
+</font>
+
+<p align="CENTER"><table width="400" cellspacing="1" cellpadding="7" border="">
+<tbody><tr><td width="16%">
+<font size="2" face="Arial"></font><p><font size="2" face="Arial">Able</font></p></td>
+<td width="28%">
+<font size="2" face="Arial"></font><p align="CENTER"><font size="2" face="Arial">3</font></p></td>
+<td width="28%">
+<font size="2" face="Arial"></font><p align="CENTER"><font size="2" face="Arial">11</font></p></td>
+<td width="28%">
+<font size="2" face="Arial"></font><p align="CENTER"><font size="2" face="Arial">19</font></p></td>
+</tr>
+<tr><td width="16%">
+<font size="2" face="Arial"></font><p><font size="2" face="Arial">Baker</font></p></td>
+<td width="28%">
+<font size="2" face="Arial"></font><p align="CENTER"><font size="2" face="Arial">4</font></p></td>
+<td width="28%">
+<font size="2" face="Arial"></font><p align="CENTER"><font size="2" face="Arial">13</font></p></td>
+<td width="28%">
+<font size="2" face="Arial"></font><p align="CENTER"><font size="2" face="Arial">18</font></p></td>
+</tr>
+<tr><td width="16%">
+<font size="2" face="Arial"></font><p><font size="2" face="Arial">Charlie</font></p></td>
+<td width="28%">
+<font size="2" face="Arial"></font><p align="CENTER"><font size="2" face="Arial">5</font></p></td>
+<td width="28%">
+<font size="2" face="Arial"></font><p align="CENTER"><font size="2" face="Arial">10</font></p></td>
+<td width="28%">
+<font size="2" face="Arial"></font><p align="CENTER"><font size="2" face="Arial">15</font></p></td>
+</tr>
+</tbody></table>
+</p>
+
+<font size="2" face="Arial">
+  <p>
+    The smallest submitted spans are:
+  </p>
+</font>
+
+<p align="CENTER">
+  <table width="400" cellspacing="1" cellpadding="7" border="">
+    <tbody><tr>
+      <td width="16%">
+        <font size="2" face="Arial">
+          <p align="CENTER">
+            &nbsp;
+          </p>
+        </font>
+      </td>
+      <td width="28%">
+        <font size="2" face="Arial">
+          <p align="CENTER">
+            3
+          </p>
+        </font>
+      </td>
+      <td width="28%">
+        <font size="2" face="Arial">
+          <p align="CENTER">
+            10
+          </p>
+        </font>
+      </td>
+      <td width="28%">
+        <font size="2" face="Arial">
+          <p align="CENTER">
+            15
+          </p>
+        </font>
+      </td>
+    </tr>
+  </tbody></table>
+</p>
+
+<font size="2" face="Arial">
+<p>The sequence subscores are:</p>
+</font>
+<p align="CENTER"><table width="400" cellspacing="1" cellpadding="7" border="">
+<tbody><tr><td width="17%">
+<font size="2" face="Arial"></font><p><font size="2" face="Arial">Able</font></p></td>
+<td width="28%">
+<font size="2" face="Arial"></font><p align="CENTER"><font size="2" face="Arial">1.00</font></p></td>
+<td width="28%">
+<font size="2" face="Arial"></font><p align="CENTER"><font size="2" face="Arial">0.91</font></p></td>
+<td width="28%">
+<font size="2" face="Arial"></font><p align="CENTER"><font size="2" face="Arial">0.79</font></p></td>
+</tr>
+<tr><td width="17%">
+<font size="2" face="Arial"></font><p><font size="2" face="Arial">Baker</font></p></td>
+<td width="28%">
+<font size="2" face="Arial"></font><p align="CENTER"><font size="2" face="Arial">0.75</font></p></td>
+<td width="28%">
+<font size="2" face="Arial"></font><p align="CENTER"><font size="2" face="Arial">0.77</font></p></td>
+<td width="28%">
+<font size="2" face="Arial"></font><p align="CENTER"><font size="2" face="Arial">0.83</font></p></td>
+</tr>
+<tr><td width="17%">
+<font size="2" face="Arial"></font><p><font size="2" face="Arial">Charlie</font></p></td>
+<td width="28%">
+<font size="2" face="Arial"></font><p align="CENTER"><font size="2" face="Arial">0.60</font></p></td>
+<td width="28%">
+<font size="2" face="Arial"></font><p align="CENTER"><font size="2" face="Arial">1.00</font></p></td>
+<td width="28%">
+<font size="2" face="Arial"></font><p align="CENTER"><font size="2" face="Arial">1.00</font></p></td>
+</tr>
+</tbody></table>
+</p>
+
+<font size="2" face="Arial">
+<p>The scores for each person are:</p>
+</font>
+<p align="CENTER"><table width="400" cellspacing="1" cellpadding="7" border="">
+<tbody><tr><td width="17%">
+<font size="2" face="Arial"></font><p><font size="2" face="Arial">Able</font></p></td>
+<td width="83%" valign="TOP">
+<font size="2" face="Arial"></font><p align="CENTER"><font size="2" face="Arial">2.70</font></p></td>
+</tr>
+<tr><td width="17%">
+<font size="2" face="Arial"></font><p><font size="2" face="Arial">Baker</font></p></td>
+<td width="83%" valign="TOP">
+<font size="2" face="Arial"></font><p align="CENTER"><font size="2" face="Arial">2.35</font></p></td>
+</tr>
+<tr><td width="17%">
+<font size="2" face="Arial"></font><p><font size="2" face="Arial">Charlie</font></p></td>
+<td width="83%" valign="TOP">
+<font size="2" face="Arial"></font><p align="CENTER"><font size="2" face="Arial">2.60</font></p></td>
+</tr>
+</tbody></table>
+</p>
+
+<font size="2" face="Arial">
+<p>So Able is the winner.</p>
+
+<b><p>Do I have to submit a sequence for every length from 2 to 25?</p>
+</b>
+<p>Yes.  You will not be given a score unless you’ve submitted an acceptable sequence for each of the 24 sequence lengths.</p>
+
+<b><p>How will I know that you’ve received my entry?</p>
+</b></font><font size="2">
+</font><font size="2" face="Arial"><p>When I receive an entry I process 
+it with the automated Parser/Scorer and then send a confirmation back to
+ the submitter.  Although the Parser/Scorer is automated, the process of
+ getting entries <i>into</i> the Parser/Scorer is not, so it may take as long as 24 hours for you to receive your confirmation.</p>
+
+<p><b>My email software automatically inserts line breaks into long lines. Will this 
+cause my entry to be rejected?</b></p>
+
+<p>
+If the 
+Parser/Scorer rejects an entry but the submitter's intent is clear, I'll 
+probably (depending on the effort involved) repair the entry. In particular, I 
+will always fix spurious line breaks inserted by your email software.
+</p>
+
+<b>
+<p>
+What do you mean by the "length" of a sequence?
+</p>
+</b>
+
+<p>
+The length of a sequence is the number of terms it contains.  For example, the length of (1, 2, 4) is 3.
+</p>
+
+</font>
+
+<p align="center">
+</p><hr>
+<p></p>
+<font size="2" face="Arial">
+  <p align="center">
+    <a href="http://www.recmath.org/contest/Triangles/FinalReport.html">
+      Triangles Contest Results</a>
+     — 
+    <a href="http://www.recmath.org/contest/Triangles/index.php">
+      Al Zimmermann's Programming Contests</a>
+  </p>
+</font>
+<p align="center">
+    <font size="2" face="Arial">You are visitor</font>
+    <!--webbot bot="HTMLMarkup" startspan -->
+      <img src="Triangles%20Programming%20Contest_files/counter.html">
+    <!--webbot bot="HTMLMarkup" endspan -->
+    <font size="2" face="Arial"> to this site.</font>
+</p>
+
+
+
+</body></html>

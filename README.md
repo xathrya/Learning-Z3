@@ -1,0 +1,1 @@
+A Simple repository for documenting all resource in learning Z3

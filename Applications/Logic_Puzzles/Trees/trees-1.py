@@ -1,0 +1,89 @@
+#!/usr/bin/env python
+
+from __future__ import print_function
+import z3
+
+class TreePuzzzle:
+  def __init__(self,cols,rows,data):
+    data = [line for line in data.split("\n") if line != ""]
+    data = [[c == "x" for c in line] for line in data]
+    self.xsize  = len(cols)
+    self.ysize  = len(rows)
+    self.cols   = cols
+    self.rows   = rows
+    self.data   = {(x,y): data[y][x] for x in range(self.xsize) for y in range(self.ysize)}
+    self.solver = z3.Solver()
+
+  def int01(self,x,y):
+    v = z3.Int("c%d,%d" % (x,y))
+    self.solver.add(v >= 0)
+    self.solver.add(v <= 1)
+    return v
+
+  def print_answer(self):
+    for y in range(self.ysize):
+      for x in range(self.xsize):
+        if self.data[x,y]:
+          # D83C would be better but not in my terminal's font
+          print(u"\u25B2", end="")
+        elif str(self.model.evaluate(self.camps[x,y])) == "1":
+          print(u"\u2302", end="")
+        else:
+          print(u" ", end="")
+      print("")
+
+  def surrounding_camps(self,x0,y0):
+    result = []
+    for y in [y0-1,y0,y0+1]:
+      for x in [x0-1,x0,x0+1]:
+        if x < 0 or x >= self.xsize or y < 0 or y >= self.ysize or (x,y) == (x0,y0):
+          pass
+        else:
+          result.append(self.camps[x,y])
+    return result
+
+  def solve(self):
+    self.camps = {(x,y): self.int01(x,y) for x in range(self.xsize) for y in range(self.ysize)}
+    # Rows
+    for x in range(self.xsize):
+      self.solver.add(z3.Sum([self.camps[x,y] for y in range(self.ysize)]) == self.cols[x])
+    # Columns
+    for y in range(self.ysize):
+      self.solver.add(z3.Sum([self.camps[x,y] for x in range(self.xsize)]) == self.rows[y])
+    # Camps not on trees
+    # 1:1 mapping between trees and camps
+    # FIXME: This constraint is weaker than puzzle requires, might result is fake solutions
+    #
+    # Solution idea: (x,y,tree id) var for every camp
+    for y in range(self.ysize):
+      for x in range(self.xsize):
+        if self.data[x,y]:
+          self.solver.add(self.camps[x,y] == 0)
+          self.solver.add(z3.Sum(self.surrounding_camps(x,y)) >= 1)
+
+    if self.solver.check() == z3.sat:
+      self.model = self.solver.model()
+      self.print_answer()
+    else:
+      print("failed to solve")
+
+
+
+TreePuzzzle(
+  [2,3,1,2,4,2,3,3,2,3],
+  [4,1,3,1,3,1,3,1,3,1,3,1],
+"""
+...x......
+x..x..x.x.
+...x......
+..x....x.x
+.......x..
+...xx....x
+.x....x...
+....x..xx.
+..x..x....
+...x......
+....x...x.
+x.......x.
+"""
+).solve()

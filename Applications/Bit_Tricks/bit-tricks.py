@@ -1,0 +1,187 @@
+# Some of tricks in bit arithmetic
+#
+# Use: 
+#    python bit-tricks.py 
+# 
+from z3 import *
+
+# Based on Z3 source code
+def prove_with_solver(s, claim, **keywords):
+    """Try to prove the given claim.
+
+    This is a simple function for creating demonstrations. It tries to prove
+    `claim` by showing the negation is unsatisfiable.
+
+    >>> p, q = Bools('p q')
+    >>> prove(Not(And(p, q)) == Or(Not(p), Not(q)))
+    proved
+    """
+    s.set(**keywords)
+    s.add(Not(claim))
+    if keywords.get('show', False):
+        print(s)
+    r = s.check()
+    if r == unsat:
+        print("proved")
+    elif r == unknown:
+        print("failed to prove")
+        print(s.model())
+    else:
+        print("counterexample")
+        print(s.model())
+
+def validate_sign_by_shift():
+    """
+    sign = v >> (sizeof(int) * CHAR_BIT - 1);
+    """
+    v = BitVec("v", 32)
+    s = v >> 31
+    print("Validating sign trick:")
+    prove(
+        Or(
+            And(v < 0, s == -1),
+            And(v >= 0, s == 0),
+        )
+    )
+
+def validate_opposite_sign_by_xor():
+    """
+    int x, y;               // input values to compare signs
+    bool f = ((x ^ y) < 0); // true iff x and y have opposite signs
+    """
+    x = BitVec("x", 32)
+    y = BitVec("y", 32)
+    f = (x^y) < 0
+
+    print("Validating sign trick:")
+    prove(
+        Or(
+            And(x >= 0, y >= 0, f == False),
+            And(x < 0, y < 0, f == False),
+            And(x >= 0, y < 0, f == True),
+            And(x < 0, y >= 0, f == True),
+        )
+    )
+
+def validate_abs_without_branching_1():
+    """
+    int v;             // we want to find the absolute value of v
+    unsigned int r;    // the result goes here
+    int const mask = v >> sizeof(int) * CHAR_BIT - 1;
+    r = (v + mask) ^ mask;
+    """
+    v = BitVec("v", 32)
+    mask = v >> 31
+    r = (v + mask) ^ mask
+    print("Validating abs without branching, version 1")
+    prove(
+        Or(
+            And(v >= 0, r==v),
+            And(v < 0, r==-v)
+        )
+    )
+
+def validate_abs_without_branching_2():
+    """
+    int v;             // we want to find the absolute value of v
+    unsigned int r;    // the result goes here
+    int const mask = v >> sizeof(int) * CHAR_BIT - 1;
+    r = (v ^ mask) - mask;
+    """
+    v = BitVec("v", 32)
+    mask = v >> 31
+    r = (v^mask) - mask
+    print("Validating abs without branching, version 2")
+    prove(
+        Or(
+            And(v >= 0, r==v),
+            And(v < 0, r==-v)
+        )
+    )
+
+def c_boolean(solver, bool_expr):
+    expr_val = BitVec("t", 32)
+    # zero = BitVec("0", 32)
+    # one    = BitVec("1", 32)
+    # solver.add(zero == 0)
+    # solver.add(one == 0)
+    solver.add(
+        Or(
+            And(bool_expr, expr_val == 1),
+            And(Not(bool_expr), expr_val == 0)
+        )
+    )
+    return expr_val
+
+def validate_min_without_branching():
+    """
+    int x;    // we want to find the minimum of x and y
+    int y;
+    int r;    // the result goes here
+    r = y ^ ((x ^ y) & -(x < y)); // min(x, y)
+    """
+    s = Solver()
+    x = BitVec("x", 32)
+    y = BitVec("y", 32)
+    r = y ^ ((x ^ y) & -c_boolean(s, x < y))
+    print("Validating min without branching")
+    prove_with_solver(
+        s,
+        Or(
+            And(x <= y, r == x),
+            And(y <= y, r == y),
+        )
+    )
+
+def validate_max_without_branching():
+    """
+    int x;    // we want to find the minimum of x and y
+    int y;
+    int r;    // the result goes here
+    r = x ^ ((x ^ y) & -(x < y)); // max(x, y)
+    """
+    s = Solver()
+    x = BitVec("x", 32)
+    y = BitVec("y", 32)
+    r = x ^ ((x ^ y) & -c_boolean(s, x < y))
+    print("Validating max without branching")
+    prove_with_solver(
+        s,
+        Or(
+            And(x >= y, r == x),
+            And(y >= y, r == y),
+        )
+    )
+
+def validate_is_power_of_two():
+    """
+    unsigned int v; // we want to see if v is a power of 2
+    bool f;                 // the result goes here
+
+    f = (v & (v - 1)) == 0;
+    """
+    v = BitVec("v", 32)
+    f = (v & (v - 1)) == 0
+
+    powers_of_two = [2**i for i in range(32)]
+    naive_is_f_power_of_two = Or([v == k for k in powers_of_two])
+
+    print("Validating is power of two")
+    prove(
+        Or(
+            f == naive_is_f_power_of_two,
+            v == 0,
+        )
+    )
+
+validate_sign_by_shift()
+validate_opposite_sign_by_xor()
+validate_abs_without_branching_1()
+validate_abs_without_branching_2()
+validate_min_without_branching()
+validate_max_without_branching()
+validate_is_power_of_two()
+
+"""
+Based on https://graphics.stanford.edu/~seander/bithacks.html
+"""

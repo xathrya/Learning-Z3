@@ -1,0 +1,8 @@
+(declare-const x Real)
+(declare-const y Real)
+(declare-const z Real)
+(assert (=(-(+(* 3 x) (* 2 y)) z) 1))
+(assert (=(+(-(* 2 x) (* 2 y)) (* 4 z)) -2))
+(assert (=(-(+ (- 0 x) (* 0.5 y)) z) 0))
+(check-sat)
+(get-model)
